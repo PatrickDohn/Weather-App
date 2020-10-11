@@ -4,11 +4,20 @@ import { colors } from '../utils/index'
 
 const { PRIMARY_COLIOR, SECONDARY_COLOR } = colors
 
+function convertTime(unixTime){
+    let dt = new Date(unixTime * 1000)
+    let h = dt.getHours()
+    let m = "0" + dt.getMinutes()
+    let t = h + ":" + m.substr(-2)
+    return t
+}
+
 export default function WeatherInfo({ currentWeather }) {
     const {
         main: {temp},
         weather: [details],
-        name
+        name,
+        sys
     } = currentWeather
     const { icon, main, description } = details
 
@@ -20,6 +29,7 @@ export default function WeatherInfo({ currentWeather }) {
             <Text style={styles.textPrimary}>{Math.floor(temp)}°</Text>
             <Text style={styles.weatherDescription}>{description}</Text>
             <Text style={styles.textSecondary}>{main}</Text>
+            <Text>Sunset {convertTime(sys.sunset)} PM</Text>
         </View>
     )
 }

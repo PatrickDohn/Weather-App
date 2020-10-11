@@ -95,6 +95,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: BORDER_COLOR,
         borderRadius: 10,
+        backgroundColor: 'white',
+        shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 11,
+    },
+        shadowOpacity: 0.55,
+        shadowRadius: 14.78,
+
+        elevation: 22,
+
     },
     weatherDetailsRow: {
         flexDirection: 'row',

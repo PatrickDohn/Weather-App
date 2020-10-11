@@ -12,11 +12,14 @@ import { WEATHER_API_KEY } from 'react-native-dotenv'
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?'
 
+
+
 export default function App() {
 
   const [errorMessage, setErrorMessage] = useState(null)
   const [currentWeather, setCurrentWeather] = useState(null)
   const [unitsSystem, setUnitsSystem] = useState('imperial')
+
 
   useEffect(() => {
     load()
@@ -43,6 +46,7 @@ export default function App() {
 
       const result = await response.json()
 
+
       if(response.ok) {
         setCurrentWeather(result)
       } else {
@@ -54,8 +58,11 @@ export default function App() {
     }
 }
   if(currentWeather) {
+
+    const currentTemp = currentWeather.main.temp
+
     return (
-      <View style={styles.container}>
+      <View style={{...styles.container, backgroundColor: currentTemp > (50 - 32) * 5/9 ? colors.TEMP_COLOR : colors.SECONDARY_COLOR}}>
         <StatusBar style="auto" />
         <View style={styles.main}>
           <UnitsPicker
