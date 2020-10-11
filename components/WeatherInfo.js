@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
-import {colors} from '../utils/index'
+import { colors } from '../utils/index'
 
 const { PRIMARY_COLIOR, SECONDARY_COLOR } = colors
 
@@ -17,7 +17,7 @@ export default function WeatherInfo({ currentWeather }) {
         <View style={styles.weatherInfo}>
             <Text>{name}</Text>
             <Image style={styles.weatherIcon} source={{ url: iconUrl }} />
-            <Text style={styles.textPrimary}>{temp}°</Text>
+            <Text style={styles.textPrimary}>{Math.floor(temp)}°</Text>
             <Text style={styles.weatherDescription}>{description}</Text>
             <Text style={styles.textSecondary}>{main}</Text>
         </View>

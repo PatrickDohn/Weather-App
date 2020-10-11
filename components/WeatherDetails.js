@@ -30,7 +30,7 @@ export default function WeatherDetails({ currentWeather, unitsSystem }) {
                         />
                         <View style={styles.weatherDetailsItems}>
                             <Text>Feels like:</Text>
-                            <Text style={styles.textSecondary}>{feels_like}°</Text>
+                            <Text style={styles.textSecondary}>{Math.floor(feels_like)}°</Text>
                         </View>
                     </View>
                 </View>

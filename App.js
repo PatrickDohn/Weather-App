@@ -8,15 +8,15 @@ import UnitsPicker from './components/UnitsPicker'
 import {colors} from './utils/index'
 import ReloadIcon from './components/ReloadIcon'
 import WeatherDetails from './components/WeatherDetails'
+import { WEATHER_API_KEY } from 'react-native-dotenv'
 
-const WEATHER_API_KEY = 'cc594fd2fb58e9565d6c02e75ac79a95'
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?'
 
 export default function App() {
 
   const [errorMessage, setErrorMessage] = useState(null)
   const [currentWeather, setCurrentWeather] = useState(null)
-  const [unitsSystem, setUnitsSystem] = useState('metric')
+  const [unitsSystem, setUnitsSystem] = useState('imperial')
 
   useEffect(() => {
     load()
