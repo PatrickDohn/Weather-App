@@ -1,8 +1,9 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { colors } from '../utils/index'
+import moment from 'moment'
 
-const { PRIMARY_COLIOR, SECONDARY_COLOR } = colors
+const { PRIMARY_COLOR, SECONDARY_COLOR } = colors
 
 function convertTime(unixTime){
     let dt = new Date(unixTime * 1000)
@@ -29,7 +30,7 @@ export default function WeatherInfo({ currentWeather }) {
             <Text style={styles.textPrimary}>{Math.floor(temp)}°</Text>
             <Text style={styles.weatherDescription}>{description}</Text>
             <Text style={styles.textSecondary}>{main}</Text>
-            <Text>Sunset {convertTime(sys.sunset)} PM</Text>
+            <Text style={styles.sunText}>Sunrise {convertTime(sys.sunrise)} AM | Sunset {convertTime(sys.sunset)} PM</Text>
         </View>
     )
 }
@@ -48,12 +49,18 @@ const styles = StyleSheet.create({
     },
     textPrimary: {
         fontSize: 40,
-        color: PRIMARY_COLIOR
+        color: PRIMARY_COLOR,
+        fontWeight: '600'
     },
     textSecondary: {
         fontSize: 20,
         color: SECONDARY_COLOR,
         fontWeight: '500',
         marginTop: 10
+    },
+    sunText: {
+        fontSize: 12,
+        fontWeight: '600',
+        color: 'white'
     }
 })

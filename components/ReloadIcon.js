@@ -10,7 +10,7 @@ export default function ReloadIcon({load}) {
             onPress={load}
             name="ios-refresh"
             size={24}
-            color={colors.PRIMARY_COLIOR} />
+            color={colors.PRIMARY_COLOR} />
         </View>
     )
 }

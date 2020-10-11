@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: BORDER_COLOR,
         borderRadius: 10,
-        backgroundColor: 'white',
+        backgroundColor: '#A3AAAE',
         shadowColor: "#000",
     shadowOffset: {
         width: 0,
