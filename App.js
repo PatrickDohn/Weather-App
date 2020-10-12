@@ -59,10 +59,12 @@ export default function App() {
 }
   if(currentWeather) {
 
-    const currentTemp = currentWeather.main.temp
+    // background color change based on different temps
+    // const currentTemp = currentWeather.main.temp
+    // , backgroundColor: currentTemp > (50 - 32) * 5/9 ? colors.TEMP_COLOR : colors.SECONDARY_COLOR}
 
     return (
-      <View style={{...styles.container, backgroundColor: currentTemp > (50 - 32) * 5/9 ? colors.TEMP_COLOR : colors.SECONDARY_COLOR}}>
+      <View style={{...styles.container, backgroundColor: colors.TEMP_COLOR}}>
         <StatusBar style="auto" />
         <View style={styles.main}>
           <UnitsPicker
