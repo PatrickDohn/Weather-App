@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { colors } from '../utils/index'
+import Forecast from './Forecast'
 // import moment from 'moment'
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors
@@ -31,6 +32,7 @@ export default function WeatherInfo({ currentWeather }) {
             <Text style={styles.weatherDescription}>{description}</Text>
             <Text style={styles.textSecondary}>{main}</Text>
             <Text style={styles.sunText}>Sunrise {convertTime(sys.sunrise)} AM | Sunset {convertTime(sys.sunset)} PM</Text>
+            <Forecast />
         </View>
     )
 }
@@ -39,6 +41,7 @@ export default function WeatherInfo({ currentWeather }) {
 const styles = StyleSheet.create({
     weatherInfo: {
         alignItems: 'center',
+        top: 40
     },
     weatherIcon: {
         width: 100,
