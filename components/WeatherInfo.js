@@ -19,7 +19,7 @@ export default function WeatherInfo({ currentWeather }) {
         main: {temp},
         weather: [details],
         name,
-        sys
+        sys: {sunrise, sunset}
     } = currentWeather
     const { icon, main, description } = details
 
@@ -31,7 +31,7 @@ export default function WeatherInfo({ currentWeather }) {
             <Text style={styles.textPrimary}>{Math.floor(temp)}°</Text>
             <Text style={styles.weatherDescription}>{description}</Text>
             <Text style={styles.textSecondary}>{main}</Text>
-            <Text style={styles.sunText}>Sunrise {convertTime(sys.sunrise)} AM | Sunset {convertTime(sys.sunset)} PM</Text>
+            <Text style={styles.sunText}>Sunrise {convertTime(sunrise)} AM | Sunset {convertTime(sunset)} PM</Text>
             <Forecast />
         </View>
     )

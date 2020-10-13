@@ -57,6 +57,7 @@ export default function App() {
       setErrorMessage(error.message)
     }
 }
+
   if(currentWeather) {
 
     // background color change based on different temps
