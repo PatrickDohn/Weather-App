@@ -14,7 +14,7 @@ function convertTime(unixTime){
     return t
 }
 
-export default function WeatherInfo({ currentWeather }) {
+export default function WeatherInfo({ currentWeather,unitsSystem }) {
     const {
         main: {temp},
         weather: [details],
@@ -32,7 +32,7 @@ export default function WeatherInfo({ currentWeather }) {
             <Text style={styles.weatherDescription}>{description}</Text>
             <Text style={styles.textSecondary}>{main}</Text>
             <Text style={styles.sunText}>Sunrise {convertTime(sunrise)} AM | Sunset {convertTime(sunset)} PM</Text>
-            <Forecast />
+            <Forecast unitsSystem={unitsSystem} />
         </View>
     )
 }

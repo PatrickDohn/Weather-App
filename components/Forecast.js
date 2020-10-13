@@ -5,10 +5,9 @@ import * as Location from 'expo-location'
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/forecast?'
 
-export default function Forecast() {
+export default function Forecast({ unitsSystem }) {
     const [fiveDay, setFiveDay] = useState({list: [{main: null}]})
     const [errorMessage, setErrorMessage] = useState(null)
-    // const [unitsSystem, setUnitsSystem] = useState('imperial')
 
     // const {
     //     list: [details]
@@ -16,9 +15,26 @@ export default function Forecast() {
 
     // const {main: {temp}, dt} = details
 
-    // console.log('this is', fiveDay.list[1].dt)
+
     // let dayOfWeek = new Date(fiveDay.list[1].dt * 1000)
-    // let nameofDay = dayOfWeek.getMonth() + 1
+    // let xx = new Date()
+    // document.write(xx.toUTCString())
+    // console.log(xx)
+
+    // let dates = []
+
+    // for (let i = 1; i < fiveDay.list[].length; i++) {
+    //     dates.push(fiveDay.list[i].dt)
+    // }
+
+
+    // let timestamp = fiveDay.list[1].dt
+    // let a = new Date(timestamp * 1000)
+    const week = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
+    // let dayOfWeek = week[a.getDay()]
+
+    // console.log(timestamp)
+
 
 
     useEffect(() => {
@@ -39,7 +55,9 @@ export default function Forecast() {
 
           const { latitude, longitude } = location.coords
 
-          const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=imperial&appid=${WEATHER_API_KEY}`
+          const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`
+
+          console.log(unitsSystem)
 
 
           const response = await fetch(weatherUrl)
@@ -55,22 +73,34 @@ export default function Forecast() {
 
             const days = {list: []}
 
+            // loop through every item in the result object
             for(let i = 0; i < result.list.length; i++) {
-                if(i === 0){
-
+                // if index isnt equal to 0 move to comapring
+                // index 0 is always current day so skip
+                if(i !== 0){
+                    // making sure we have prev Index for comparing
+                    let lastI = i - 1
+                    // lastI get plugs into result to get date of prev Index
+                    let prevDay = new Date(result.list[lastI].dt * 1000).getDay()
+                    // same as lastI but for current index
+                    let currentDay = new Date(result.list[i].dt * 1000).getDay()
+                    // comparare if the prev dt doesnt = current date
+                    if(prevDay !== currentDay) {
+                        console.log('this is i', i)
+                        // getting current index of new object
+                        let dayI = days.list.length
+                        // getting index by comparing before result is pushed into new object
                         days.list.push(result.list[i])
-
-                    } else {
-                        let lastI = i - 1
-                        let equals = new Date(result.list[lastI].dt * 1000).getDate() === new Date(result.list[i].dt * 1000).getDate()
-
-                        if(!equals) {
-                        days.list.push(result.list[i])
+                        // changes unix number for date to human readable
+                        let formatDay = week[currentDay]
+                        // fd adds new key to format day
+                        days.list[dayI].fd = formatDay
+                        console.log(days.list[dayI].fd)
                     }
                 }
             }
 
-
+            console.log(days.list.length)
             setFiveDay(days)
 
           } else {
@@ -81,14 +111,13 @@ export default function Forecast() {
         }
     }
 
-    // let date = new Date ()
-
 
     return (
         <View style={styles.container}>
             {fiveDay.list.map(day => (
                 <View style={styles.forecastBox}>
                  <View style={styles.forecastRow}>
+                     <Text>{day.fd}</Text>
                      <Text>{day.main.temp_max}</Text>
                  </View>
              </View>
